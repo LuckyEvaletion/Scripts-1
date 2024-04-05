@@ -265,9 +265,9 @@ end
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Doors April Fools Helper",
+	Name = "MSCOIMS",
 	LoadingTitle = "Doors April Fools Helper",
-	LoadingSubtitle = "by Kiwib.",
+	LoadingSubtitle = "v1.0.0",
 	ConfigurationSaving = {
 		Enabled = true,
 		FolderName = nil,
@@ -309,36 +309,36 @@ local Toggle = Tab:CreateToggle({
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					notify("👁️ Retro Eyes")
+					notify("Retro Eyes")
 					if EntityEsp then
-						selection(child, "👁️ Retro Eyes")
+						selection(child, "Retro Eyes")
 					end
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("💨 Retro Rush")
+					notify("Retro Rush")
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "💨 Retro Rush")
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Retro Rush")
 					end
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("💨 Retro Ambush")
+					notify("Retro Ambush")
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "💨 Retro Ambush")
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Retro Ambush")
 					end
 				elseif child.Name == "Drakobloxxer" then
 					if EntityEsp then
-						selection(child, "🧱 DrakoBloxxer")
+						selection(child, "DrakoBloxxer")
 					end
 					if not MainNotified then
 						MainNotified = true
-						notify("🧱 DrakoBloxxer")
+						notify("DrakoBloxxer")
 					end
 				end
 			end)
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "RetroScreech" then
-					notify("🗣️ Retro Screech")
+					notify("Retro Screech")
 					if EntityEsp then
-						selection(child, "🗣️ Retro Screech")
+						selection(child, "Retro Screech")
 					end
 				end
 			end)
@@ -608,8 +608,8 @@ local Toggle = Tab:CreateToggle({
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "KeyObtain" and v:IsA("Model") then
-					selection(v, "🔑 Key")
-					notify("", nil, "🔑 Key Found!")
+					selection(v, "Key")
+					notify("", nil, "Key Found!")
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -623,8 +623,8 @@ local Toggle = Tab:CreateToggle({
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
 					if v.Name == "KeyObtain" and v:IsA("Model") then
-						selection(v, "🔑 Key")
-						notify("", nil, "🔑 Key Found!")
+						selection(v, "Key")
+						notify("", nil, "Key Found!")
 						spawn(function()
 							while task.wait() do
 								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -654,7 +654,7 @@ local Toggle = Tab:CreateToggle({
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "Door" and v:IsA("Model") then
-					selection(v, "🚪 Door", true)
+					selection(v, "Door", true)
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
@@ -668,7 +668,7 @@ local Toggle = Tab:CreateToggle({
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
 					if v.Name == "Door" and v:IsA("Model") then
-						selection(v, "🚪 Door", true)
+						selection(v, "Door", true)
 						spawn(function()
 							while task.wait() do
 								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
@@ -698,14 +698,14 @@ local Toggle = Tab:CreateToggle({
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "RetroWardrobe" and v:IsA("Model") then
-					selection(v, "🗄️ Wardrobe", false, true)
+					selection(v, "Wardrobe", false, true)
 				end
 			end
 			ClosetESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
 					if v.Name == "RetroWardrobe" and v:IsA("Model") then
-						selection(v, "🗄️ Wardrobe", false, true)
+						selection(v, "Wardrobe", false, true)
 					end
 				end
 			end)
@@ -846,7 +846,7 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-notify("", nil, "🐦 Script made by: kiwib.")
+notify("", nil, "MSCOINS-(v1.0.0)")
 
 game:GetService("RunService").RenderStepped:Connect(function()
 	workspace.CurrentCamera.FieldOfView = FOV
