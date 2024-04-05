@@ -262,18 +262,18 @@ function checkDistance(part, extra)
 	return false
 end
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
-local Window = Rayfield:CreateWindow({
-	Name = "MSCOIMS",
-	LoadingTitle = "Doors April Fools Helper",
-	LoadingSubtitle = "v1.0.0",
-	ConfigurationSaving = {
-		Enabled = true,
-		FolderName = nil,
-		FileName = "Doors April Fools Helper"
-	},
-	KeySystem = false,
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
+local Window = Library:CreateWindow({
+    Title = "MSCOINS-(v1.2.1) ",
+    Center = true,
+    AutoShow = true,
+    TabPadding = 5.5,
+    MenuFadeTime = 0
 })
 
 local killBricks
@@ -297,13 +297,13 @@ local FOV = 70
 local Speed = 15
 local JumpPower = 25
 
-local Tab = Window:CreateTab("Main", 16964919241)
-local Section = Tab:CreateSection("Toggles")
+local Tab = Window:AddTab("Main")
+local Section = Tab:AddLeftGroupbox("Toggles")
 
-local Toggle = Tab:CreateToggle({
-	Name = "Entity Notifier",
-	CurrentValue = false,
-	Flag = "EntityNotifier",
+local Toggle = Section:AddToggle("Notifies",{
+	Text = "Entity Notifier",
+	Default = false,
+	Tooltip = "EntityNotifier",
 	Callback = function(Value)
 		if Value then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
@@ -349,10 +349,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Auto Interact",
-	CurrentValue = false,
-	Flag = "Auto Interact",
+local Toggle = Section:AddToggle("Interact",{
+	Texy = "Auto Interact",
+	Default = false,
+	Tooltip = "Auto Interact",
 	Callback = function(Value)
 		AutoInteract = Value
 	end,
@@ -412,33 +412,33 @@ function sFLY(vfly)
 		end)
 	end
 	flyKeyDown = game:GetService("Players").LocalPlayer:GetMouse().KeyDown:Connect(function(KEY)
-		if KEY:lower() == 'w' then
+		if KEY:lower() == '' then
 			CONTROL.F = (vfly and FlySpeed or FlySpeed)
-		elseif KEY:lower() == 's' then
+		elseif KEY:lower() == '' then
 			CONTROL.B = - (vfly and FlySpeed or FlySpeed)
-		elseif KEY:lower() == 'a' then
+		elseif KEY:lower() == '' then
 			CONTROL.L = - (vfly and FlySpeed or FlySpeed)
-		elseif KEY:lower() == 'd' then 
+		elseif KEY:lower() == '' then 
 			CONTROL.R = (vfly and FlySpeed or FlySpeed)
-		elseif true and KEY:lower() == 'e' then
+		elseif true and KEY:lower() == '' then
 			CONTROL.Q = (vfly and FlySpeed or FlySpeed)*2
-		elseif true and KEY:lower() == 'q' then
+		elseif true and KEY:lower() == '' then
 			CONTROL.E = -(vfly and FlySpeed or FlySpeed)*2
 		end
 		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
 	end)
 	flyKeyUp = game:GetService("Players").LocalPlayer:GetMouse().KeyUp:Connect(function(KEY)
-		if KEY:lower() == 'w' then
+		if KEY:lower() == '' then
 			CONTROL.F = 0
-		elseif KEY:lower() == 's' then
+		elseif KEY:lower() == '' then
 			CONTROL.B = 0
-		elseif KEY:lower() == 'a' then
+		elseif KEY:lower() == '' then
 			CONTROL.L = 0
-		elseif KEY:lower() == 'd' then
+		elseif KEY:lower() == '' then
 			CONTROL.R = 0
-		elseif KEY:lower() == 'e' then
+		elseif KEY:lower() == '' then
 			CONTROL.Q = 0
-		elseif KEY:lower() == 'q' then
+		elseif KEY:lower() == '' then
 			CONTROL.E = 0
 		end
 	end)
@@ -454,10 +454,10 @@ function NOFLY()
 	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
 end
 
-local Toggle = Tab:CreateToggle({
-	Name = "Fly",
-	CurrentValue = false,
-	Flag = "Fly",
+local Toggle = Section:AddToggle("Fly",{
+	Text = "Fly",
+	Default = false,
+	Tooltip = "Fly",
 	Callback = function(Value)
 		if Value then
 			NOFLY()
@@ -496,10 +496,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Full Bright",
-	CurrentValue = false,
-	Flag = "FullBright",
+local Toggle = Section:AddToggle("FB",{
+	Text = "Full Bright",
+	Default = false,
+	Tooltip = "FullBright",
 	Callback = function(Value)
 		if Value then
 			if brightLoop then
@@ -522,11 +522,11 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Section = Tab:CreateSection("Buttons")
+local Section2 = Tab:RightGroupbox("Buttons")
 
-local Button = Tab:CreateButton({
-	Name = "God Mode",
-	Callback = function()
+local Button = Section2:AddButton({
+	Text = "GodMode",
+	Func = function()
 		game.Players.LocalPlayer.Character.Collision.Weld.C0 += Vector3.new(7, 0, 0)
 		game.Players.LocalPlayer.Character.Collision.Weld.C1 += Vector3.new(0, -0.5, 0)
 		game.Players.LocalPlayer.Character.Collision.CanCollide = false
@@ -536,9 +536,9 @@ local Button = Tab:CreateButton({
 	end,
 })
 
-local Button = Tab:CreateButton({
-	Name = "Delete Messages",
-	Callback = function()
+local Button = Section2:AddButton({
+	Text = "Delete Messages",
+	Func = function()
 		for _, v in pairs(workspace:GetChildren()) do
 			if v:IsA("Message") then
 				v:Destroy()
@@ -547,39 +547,36 @@ local Button = Tab:CreateButton({
 	end,
 })
 
-local Section = Tab:CreateSection("Sliders")
+local Section3 = Tab:AddLeftGroupbox("Sliders")
 
-local Slider = Tab:CreateSlider({
-	Name = "Walk Speed",
-	Range = {15, 21},
-	Increment = 0.5,
-	Suffix = "Speed",
-	CurrentValue = 15,
-	Flag = "WalkSpeed",
+local Slider = Section3:AddSlider("MySlider",{
+	Text = "Walk Speed",
+	Min = 16,
+	Max = 21,
+	Default = 16,
+	Tooltip = "WalkSpeed",
 	Callback = function(Value)
 		Speed = Value
 	end,
 })
 
-local Slider = Tab:CreateSlider({
-	Name = "Jump Power",
-	Range = {0, 100},
-	Increment = 1,
-	Suffix = "Power",
-	CurrentValue = 25,
-	Flag = "JumpPower",
+local Slider = Section3:AddSlider("MySlider",{
+	Text = "JumpPower",
+	Min = 75,
+	Max = 100,
+	Default = 175,
+	Tooltip = "WalkSpeed",
 	Callback = function(Value)
 		JumpPower = Value
 	end,
 })
 
 local Slider = Tab:CreateSlider({
-	Name = "Fly Speed",
-	Range = {0, 0.3},
-	Increment = 0.01,
-	Suffix = "Speed",
-	CurrentValue = 0.3,
-	Flag = "FlySpeed",
+	Text = "Fly Speed",
+	Min = 0.01,
+	Max = 0.3,
+	Default = 0.01,
+	Tooltip = "FlySpeed",
 	Callback = function(Value)
 		FlySpeed = Value
 	end,
@@ -597,13 +594,13 @@ local Slider = Tab:CreateSlider({
 	end,
 })
 
-local Tab = Window:CreateTab("ESP", 11043368148)
-local Section = Tab:CreateSection("Toggles")
+local Tab2 = Window:AddTab("ESP")
+local Section4 = Tab2:AddLeftGroupbox("Toggles")
 
-local Toggle = Tab:CreateToggle({
-	Name = "Key ESP",
-	CurrentValue = false,
-	Flag = "KeyESP",
+local Toggle = Section4:AddToggle("Kesp",{
+	Text = "Key ESP",
+	Default = false,
+	Tooltip = "KeyESP",
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -646,10 +643,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Door ESP",
-	CurrentValue = false,
-	Flag = "DoorESP",
+local Toggle = Section4:AddToggle("Desp",{
+	Text = "Door ESP",
+	Default = false,
+	Tooltip = "DoorESP",
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -690,10 +687,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Closet ESP",
-	CurrentValue = false,
-	Flag = "ClosetESP",
+local Toggle = Section4:AddToggle("Cesp",{
+	Text = "Closet ESP",
+	Default = false,
+	Tooltip = "ClosetESP",
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -720,22 +717,22 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Entity ESP",
-	CurrentValue = false,
-	Flag = "EntityESP",
+local Toggle = Section4:AddToggle({
+	Text = "Entity ESP",
+	Default = false,
+	Tooltip = "EntityESP",
 	Callback = function(Value)
 		EntityEsp = Value
 	end,
 })
 
-local Tab = Window:CreateTab("Bypasses", 16999490474)
-local Section = Tab:CreateSection("Toggles")
+local Tab4 = Window:AddTab("Bypasses")
+local Section5 = Tab4:AddLeftGroupbox("Toggles")
 
-local Toggle = Tab:CreateToggle({
-	Name = "Bypass Screech",
-	CurrentValue = false,
-	Flag = "BypassScreech",
+local Toggle = Section5:AddToggle("Nos",{
+	Text = "Bypass Screech",
+	Default = false,
+	Tooltip = "BypassScreech",
 	Callback = function(Value)
 		if Value then
 			game:GetService("ReplicatedStorage").Entities.ScreechRetro.Name = "Screechretro"
@@ -745,10 +742,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Bypass Killbricks",
-	CurrentValue = false,
-	Flag = "BypassKillbricks",
+local Toggle = Section5:AddToggle("BK",{
+	Text = "Bypass Lava",
+	Default = false,
+	Tooltip = "BypassKillbricks",
 	Callback = function(Value)
 		if Value then
 			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
@@ -785,10 +782,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Bypass Eyes",
-	CurrentValue = false,
-	Flag = "BypassEyes",
+local Toggle = Section5:AddToggle("Beyes",{
+	Text = "Bypass Eyes",
+	Default = false,
+	Tooltip = "BypassEyes",
 	Callback = function(Value)
 		if Value then
 			Eyes = game:GetService("RunService").RenderStepped:Connect(function()
@@ -800,10 +797,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Bypass Seek",
-	CurrentValue = false,
-	Flag = "BypassSeek",
+local Toggle = Section:AddToggle("Bs"{
+	Text = "Bypass Seek Wall",
+	Default = false,
+	Tooltip = "BypassSeek",
 	Callback = function(Value)
 		if Value then
 			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
@@ -823,10 +820,10 @@ local Toggle = Tab:CreateToggle({
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Bypass DrakoBloxxers",
-	CurrentValue = false,
-	Flag = "BypassDrakoBloxxers",
+local Toggle = Section5:AddToggle("BD",{
+	Text = "Bypass DrakoBloxxers",
+	Default = false,
+	Tooltip = "BypassDrakoBloxxers",
 	Callback = function(Value)
 		if Value then
 			DrakoBloxxers = workspace.ChildAdded:Connect(function(child)
