@@ -350,7 +350,7 @@ local Toggle = Section:AddToggle("Notifies",{
 })
 
 local Toggle = Section:AddToggle("Interact",{
-	Texy = "Auto Interact",
+	Text = "Auto Interact",
 	Default = false,
 	Tooltip = "Auto Interact",
 	Callback = function(Value)
