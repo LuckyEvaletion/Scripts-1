@@ -724,7 +724,7 @@ local Toggle = Section4:AddToggle("Cesp",{
 	end,
 })
 
-local Toggle = Section4:AddToggle({
+local Toggle = Section4:AddToggle("Eesp",{
 	Text = "Entity ESP",
 	Default = false,
 	Tooltip = "EntityESP",
