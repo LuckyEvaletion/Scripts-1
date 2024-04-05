@@ -555,6 +555,8 @@ local Slider = Section3:AddSlider("MySlider",{
 	Max = 21,
 	Default = 16,
 	Tooltip = "WalkSpeed",
+	Rounding=0,
+	Compact=true,
 	Callback = function(Value)
 		Speed = Value
 	end,
@@ -565,30 +567,35 @@ local Slider = Section3:AddSlider("MySlider",{
 	Min = 75,
 	Max = 100,
 	Default = 175,
-	Tooltip = "WalkSpeed",
+	Tooltip = "JumpPower",
+	Rounding=0,
+        Compact=true,
 	Callback = function(Value)
 		JumpPower = Value
 	end,
 })
 
-local Slider = Tab:CreateSlider({
+local Slider = Section3:AddSlider("MySlider",{
 	Text = "Fly Speed",
 	Min = 0.01,
 	Max = 0.3,
 	Default = 0.01,
 	Tooltip = "FlySpeed",
+	Rounding=0,
+        Compact=true,
 	Callback = function(Value)
 		FlySpeed = Value
 	end,
 })
 
-local Slider = Tab:CreateSlider({
-	Name = "Field Of View",
-	Range = {70, 120},
-	Increment = 1,
-	Suffix = "FOV",
-	CurrentValue = 70,
+local Slider = Section3:AddSlider("MySlider",{
+	Text = "Field Of View",
+	Min = 30,
+	Max = 120,
+	Default = 70,
 	Flag = "FOV",
+	Rounding=0,
+        Compact=true,
 	Callback = function(Value)
 		FOV = Value
 	end,
