@@ -522,7 +522,7 @@ local Toggle = Section:AddToggle("FB",{
 	end,
 })
 
-local Section2 = Tab:RightGroupbox("Buttons")
+local Section2 = Tab:AddRightGroupbox("Buttons")
 
 local Button = Section2:AddButton({
 	Text = "GodMode",
