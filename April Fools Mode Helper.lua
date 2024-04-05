@@ -469,10 +469,10 @@ local Toggle = Section:AddToggle("Fly",{
 	end,
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Noclip",
-	CurrentValue = false,
-	Flag = "Noclip",
+local Toggle = Section:AddToggle("No",{
+	Text = "Noclip",
+	Default = false,
+	Tooltip = "Noclip",
 	Callback = function(Value)
 		if Value then
 			Clip = false
